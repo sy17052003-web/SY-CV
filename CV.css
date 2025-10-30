@@ -4,13 +4,85 @@
     --text-color-light: #ffffff;
     --text-color-dark: #333333;
     --section-header-color: #0080ff; 
-    --background-color: #f4f4f4; 
+    --background-color: #f4f4f4;
+    --animation-duration: 0.8s;
+    --animation-delay: 0.2s;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+
+.animation {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn var(--animation-duration) ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.contenu.animation { animation-delay: 0s; }
+.photo.animation { animation-delay: calc(var(--animation-delay) * 1); }
+.profil h1.animation { animation-delay: calc(var(--animation-delay) * 2); }
+.profil h2.animation { animation-delay: calc(var(--animation-delay) * 3); }
+.contact.animation { animation-delay: calc(var(--animation-delay) * 4); }
+.section-competence.animation { animation-delay: calc(var(--animation-delay) * 5); }
+.langue.animation { animation-delay: calc(var(--animation-delay) * 6); }
+
+
+.competence.animation {
+    animation: slideIn var(--animation-duration) ease forwards;
+    opacity: 0;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+.contenu-main section.fade-in {
+    animation: fadeInUp var(--animation-duration) ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    .fade-in {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
 }
 
 body {
@@ -30,6 +102,7 @@ body {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     min-height: 1000px;
 }
+
 .clnGauche {
     width: 35%;
     background-color: var(--primary-color);
@@ -135,7 +208,18 @@ body {
 .progression {
     height: 100%;
     background-color: var(--text-color-light);
-    transition: width 0.5s ease-in-out;
+    transition: width 1s ease-in-out;
+    animation: progressFill 1.2s ease forwards;
+    width: 0;
+}
+
+@keyframes progressFill {
+    from {
+        width: 0;
+    }
+    to {
+        width: var(--progress-width);
+    }
 }
 .competence span {
     font-size: 0.9em;
